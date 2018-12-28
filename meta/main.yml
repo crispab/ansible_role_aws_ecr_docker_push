@@ -1,0 +1,25 @@
+galaxy_info:
+  role_name: aws_ecr_docker_push
+  description: This role creates a AWS ECR and pushes a provided Docker image to it.
+  author: Max Wenzin
+  company: Crisp
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Archlinux
+      versions:
+        - all
+  galaxy_tags:
+    - aws
+    - ecr
+    - docker
+dependencies: []
