@@ -8,27 +8,29 @@
   tags:
     - ecr
 
-- debug:
+- name: Debug ECR repository
+  debug:
     var: _ecr
+  when: debugging is defined
   tags:
     - ecr
 
-- set_fact:
+- name: Set full_destination_image
+  set_fact:
     full_destination_image: "{{ _ecr.repository.repositoryUri }}:{{ destination_image_tag }}"
   tags:
     - ecr
 
-- name: Tag image with repository and tag
-  command: docker tag "{{source_image_name}}:{{ source_image_tag }}" "{{ full_destination_image }}"
-  tags:
-    - ecr
-
-- name: Login to ECR
+- name: Login to ECR  # TODO: Consider using https://github.com/awslabs/amazon-ecr-credential-helper
   shell: "$(aws ecr get-login --no-include-email --region {{ region }})"
   tags:
     - ecr
 
-- name: "Push image to {{ full_destination_image }}"
-  command: docker push "{{ full_destination_image }}"
+- name: Tag and push image
+  docker_image:
+    name: "{{source_image_name}}:{{ source_image_tag }}"
+    repository: "{{ _ecr.repository.repositoryUri }}"
+    tag: "{{ destination_image_tag }}"
+    push: yes
   tags:
     - ecr
