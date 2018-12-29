@@ -1,4 +1,7 @@
 ---
 
 ecr_name: betrcode/goodtimes
-source_image_tag: betrcode/goodtimes:latest
+region: eu-west-1
+source_image_name: betrcode/goodtimes
+source_image_tag: latest
+destination_image_tag: "{{ source_image_tag }}"

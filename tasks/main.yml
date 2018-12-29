@@ -14,21 +14,21 @@
     - ecr
 
 - set_fact:
-    _tag: "{{ _ecr.repository.repositoryUri }}:latest"
+    full_destination_image: "{{ _ecr.repository.repositoryUri }}:{{ destination_image_tag }}"
   tags:
     - ecr
 
-- name: Tag image with repository
-  command: docker tag "{{ source_image_tag }}" "{{ _tag }}"
+- name: Tag image with repository and tag
+  command: docker tag "{{source_image_name}}:{{ source_image_tag }}" "{{ full_destination_image }}"
   tags:
     - ecr
 
-- name: ECR login
+- name: Login to ECR
   shell: "$(aws ecr get-login --no-include-email --region {{ region }})"
   tags:
     - ecr
 
-- name: Push image
-  command: docker push "{{ _tag }}"
+- name: "Push image to {{ full_destination_image }}"
+  command: docker push "{{ full_destination_image }}"
   tags:
     - ecr
