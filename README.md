@@ -27,10 +27,18 @@ Role Variables
 `ecr_name` - The name of the Elastic Container Reqistry to create/use.
 Example value: *betrcode/goodtimes*
 
-`region` - The AWS region to use. Example value: *eu-west-1*
+`region` - The AWS region to use. 
+Example value: *eu-west-1*
 
-`source_image_tag` - The full image name including tag name to push.
-Example value: *betrcode/goodtimes:latest*
+`source_image_name` - The source image name. 
+Example value: *betrcode/goodtimes*
+
+`source_image_tag` - The source image tag.
+Example value: *latest*
+
+`destination_image_tag` - The destination image tag. 
+Will default to the `source_image_tag` if not set.
+Example value: *latest*
 
 `debugging` - Set this to true (or any value) to turn on debug statements.
 
