@@ -1,10 +1,9 @@
-betrcode.aws_ecr_docker_push
+crisp.aws_ecr_docker_push
 ============================
 
-*Better Code AWS Elastic Container Registry Docker Push*
+*Crisp AWS Elastic Container Registry Docker Push*
 
-This role creates a ECR and pushes a provided Docker image
- to the ECR.
+This role creates a ECR and pushes a provided Docker image to the ECR.
 
 
 Requirements
